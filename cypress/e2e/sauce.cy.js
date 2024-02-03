@@ -2,26 +2,18 @@ describe('Регистрация пользователя', () => {
 
   it('Должна успешно зарегистрировать нового пользователя', () => {
     cy.visit('https://demowebshop.tricentis.com/register');
-
-    // Ввод данных для регистрации
     cy.get('#gender-male').check();
     cy.get('#FirstName').type('Роман');
     cy.get('#LastName').type('Колотов');
     cy.get('#Email').type('testuser@example.com');
     cy.get('#Password').type('password');
     cy.get('#ConfirmPassword').type('password');
-
-    // Нажатие на кнопку регистрации
     cy.get('#register-button').click();
-
-    // Проверка успешной регистрации
     cy.url().should('include', 'https://demowebshop.tricentis.com/register');
   });
 
   it('Должен успешно войти в систему с правильными учетными данными', () => {
     cy.visit('https://demowebshop.tricentis.com/login');
-
-   
     cy.get('#Email').type('kolotovr@gmail.com');
     cy.get('#Password').type('112345');
     cy.get('input[value="Log in"]').click();
